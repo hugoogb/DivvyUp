@@ -15,6 +15,10 @@ export const HomeScreen = ({ navigation }) => {
 			<View style={styles.containerTitle}>
 				<Text style={styles.title}>DivvyUp</Text>
 				<SvgPeople width={300} height={300}></SvgPeople>
+				<Text style={styles.textDescription}>
+					Split and share group expenses in a simple, fair and
+					transparent way. Keep track of who owes what
+				</Text>
 			</View>
 			<View style={styles.containerButtons}>
 				<TouchableOpacity
@@ -71,6 +75,13 @@ const styles = StyleSheet.create({
 		fontWeight: "900",
 		marginBottom: 20,
 		color: "#10181F",
+	},
+	textDescription: {
+		fontSize: 20,
+		marginLeft: 50,
+		marginRight: 50,
+		marginTop: 20,
+		textAlign: "center",
 	},
 	containerButtons: {
 		flex: 1,
