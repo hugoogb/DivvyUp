@@ -50,6 +50,19 @@ export const HomeScreen = ({ navigation }) => {
 						></ArrowRightIcon>
 					</View>
 				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => navigation.navigate("Groups")}
+				>
+					<View style={styles.buttonTextContainer}>
+						<Text style={styles.buttonText}>See groups</Text>
+						<ArrowRightIcon
+							color={"#EEE3D9"}
+							size={24}
+							style={styles.buttonIcon}
+						></ArrowRightIcon>
+					</View>
+				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
 	);

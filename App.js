@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HomeScreen } from "./components/HomeScreen";
-import { GroupScreen } from "./components/GroupScreen";
+import { GroupsScreen } from "./components/GroupsScreen";
 import { LoginScreen } from "./components/LoginScreen";
 import { SignUpScreen } from "./components/SignUpScreen";
 
@@ -42,7 +42,7 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-				<Stack.Screen name='Group' component={GroupScreen} />
+				<Stack.Screen name='Groups' component={GroupsScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 
-export const GroupScreen = () => {
+export const GroupsScreen = () => {
 	const [text, setText] = useState("");
 	const [groups, setGroups] = useState([
 		{
