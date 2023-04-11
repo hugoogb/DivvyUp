@@ -1,10 +1,12 @@
 import { SafeAreaView, View, Button, StyleSheet, Text } from "react-native";
+import SvgPeople from "../assets/undraw_people.svg";
 
 export const HomeScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.containerTitle}>
 				<Text style={styles.title}>DivvyUp</Text>
+				<SvgPeople width={300} height={300}></SvgPeople>
 			</View>
 			<View style={styles.container}>
 				<Button
@@ -34,7 +36,8 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	title: {
-		fontSize: 48,
+		fontSize: 56,
 		fontWeight: "700",
+		marginBottom: 20,
 	},
 });
