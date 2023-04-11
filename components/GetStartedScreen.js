@@ -6,7 +6,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import SvgPeople from "../assets/undraw_people.svg";
-import { ArrowRightIcon } from "react-native-heroicons/outline";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const GetStartedScreen = ({ navigation }) => {
 	return (
@@ -26,11 +26,12 @@ export const GetStartedScreen = ({ navigation }) => {
 				>
 					<View style={styles.buttonTextContainer}>
 						<Text style={styles.buttonText}>Login</Text>
-						<ArrowRightIcon
+						<Ionicons
+							name='arrow-forward-circle'
+							size={22}
 							color={"#EEE3D9"}
-							size={24}
 							style={styles.buttonIcon}
-						></ArrowRightIcon>
+						></Ionicons>
 					</View>
 				</TouchableOpacity>
 				<TouchableOpacity
@@ -43,11 +44,12 @@ export const GetStartedScreen = ({ navigation }) => {
 						>
 							SignUp
 						</Text>
-						<ArrowRightIcon
-							color={"#10181F"}
+						<Ionicons
+							name='arrow-forward-circle-outline'
 							size={22}
+							color={"#10181F"}
 							style={styles.buttonIcon}
-						></ArrowRightIcon>
+						></Ionicons>
 					</View>
 				</TouchableOpacity>
 				<TouchableOpacity
@@ -56,11 +58,12 @@ export const GetStartedScreen = ({ navigation }) => {
 				>
 					<View style={styles.buttonTextContainer}>
 						<Text style={styles.buttonText}>Home</Text>
-						<ArrowRightIcon
+						<Ionicons
+							name='arrow-forward-circle'
+							size={22}
 							color={"#EEE3D9"}
-							size={24}
 							style={styles.buttonIcon}
-						></ArrowRightIcon>
+						></Ionicons>
 					</View>
 				</TouchableOpacity>
 			</View>
