@@ -1,8 +1,7 @@
 import {
+	StyleSheet,
 	SafeAreaView,
 	View,
-	Button,
-	StyleSheet,
 	Text,
 	TouchableOpacity,
 } from "react-native";
