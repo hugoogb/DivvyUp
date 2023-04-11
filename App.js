@@ -42,7 +42,13 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-				<Stack.Screen name='Groups' component={GroupsScreen} />
+				<Stack.Screen
+					name='Groups'
+					component={GroupsScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
