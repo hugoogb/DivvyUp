@@ -1,13 +1,3 @@
-#2A6197
-#F2F4EE
-#B9BFC6
-#C44D3C
-
-#10181F
-#152D44
-#5086A0
-
-
 #10181F - darkblue
 #72D7DD - blue
 #DCD27B - green
