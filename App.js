@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button } from "react-native";
 import { HomeScreen } from "./components/HomeScreen";
 import { ProfileScreen } from "./components/ProfileScreen";
-import { LogoTitle } from "./components/LogoTitle";
 import { GroupScreen } from "./components/GroupScreen";
 
 const Stack = createNativeStackNavigator();
