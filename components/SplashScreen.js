@@ -1,9 +1,15 @@
-import { View, Text } from "react-native";
+import { SafeAreaView, View, Text } from "react-native";
+import SvgLoading from "../assets/undraw_loading.svg";
+import { globalStyles } from "../styles/global.styles";
 
 export const SplashScreen = () => {
 	return (
-		<View>
-			<Text>Loading...</Text>
-		</View>
+		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
+			<View style={globalStyles.containerTitle}>
+				<Text style={globalStyles.title}>Loading...</Text>
+				<SvgLoading width={300} height={300}></SvgLoading>
+				<Text style={globalStyles.textDescription}>Loading...</Text>
+			</View>
+		</SafeAreaView>
 	);
 };
