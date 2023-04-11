@@ -1,5 +1,5 @@
 import { StyleSheet, SafeAreaView, View, Text } from "react-native";
-import SvgSignUp from "../assets/undraw_signup.svg";
+import SvgSignUp from "../assets/undraw_sign_up.svg";
 
 export const SignUpScreen = () => {
 	return (

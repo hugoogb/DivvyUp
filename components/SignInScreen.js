@@ -8,9 +8,9 @@ import {
 	TextInput,
 	Button,
 } from "react-native";
-import SvgLogin from "../assets/undraw_login.svg";
+import SvgSignIn from "../assets/undraw_sign_in.svg";
 
-export const LoginScreen = () => {
+export const SignInScreen = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -19,8 +19,8 @@ export const LoginScreen = () => {
 	return (
 		<SafeAreaView style={[styles.container, styles.wrapper]}>
 			<View style={styles.containerTitle}>
-				<Text style={styles.title}>Login</Text>
-				<SvgLogin width={300} height={300}></SvgLogin>
+				<Text style={styles.title}>SignIn</Text>
+				<SvgSignIn width={300} height={300}></SvgSignIn>
 				<Text style={styles.textDescription}>
 					Log into your DivvyUp account
 				</Text>

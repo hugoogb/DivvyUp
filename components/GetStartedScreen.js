@@ -22,10 +22,10 @@ export const GetStartedScreen = ({ navigation }) => {
 			<View style={styles.containerButtons}>
 				<TouchableOpacity
 					style={styles.button}
-					onPress={() => navigation.navigate("Login")}
+					onPress={() => navigation.navigate("SignIn")}
 				>
 					<View style={styles.buttonTextContainer}>
-						<Text style={styles.buttonText}>Login</Text>
+						<Text style={styles.buttonText}>SignIn</Text>
 						<Ionicons
 							name='arrow-forward-circle'
 							size={22}
