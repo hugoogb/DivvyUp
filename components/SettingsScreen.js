@@ -1,10 +1,15 @@
-import { StyleSheet, SafeAreaView, View, Text } from "react-native";
+import { useContext } from "react";
+import { StyleSheet, SafeAreaView, View, Text, Button } from "react-native";
+import { AuthContext } from "../App";
 
 export const SettingsScreen = () => {
+	const { signOut } = useContext(AuthContext);
+
 	return (
 		<SafeAreaView style={[styles.container, styles.wrapper]}>
 			<View>
 				<Text>Settings</Text>
+				<Button title='Sign out' onPress={signOut}></Button>
 			</View>
 		</SafeAreaView>
 	);

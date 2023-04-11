@@ -1,7 +1,21 @@
-import { StyleSheet, SafeAreaView, View, Text } from "react-native";
+import { useState, useContext } from "react";
+import { AuthContext } from "../App";
+import {
+	StyleSheet,
+	SafeAreaView,
+	View,
+	Text,
+	TextInput,
+	Button,
+} from "react-native";
 import SvgLogin from "../assets/undraw_login.svg";
 
 export const LoginScreen = () => {
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+
+	const { signIn } = useContext(AuthContext);
+
 	return (
 		<SafeAreaView style={[styles.container, styles.wrapper]}>
 			<View style={styles.containerTitle}>
@@ -11,8 +25,22 @@ export const LoginScreen = () => {
 					Log into your DivvyUp account
 				</Text>
 			</View>
-			<View style={styles.container}>
-				<Text>Login</Text>
+			<View style={styles.containerSignIn}>
+				<TextInput
+					placeholder='Username'
+					value={username}
+					onChangeText={setUsername}
+				/>
+				<TextInput
+					placeholder='Password'
+					value={password}
+					onChangeText={setPassword}
+					secureTextEntry
+				/>
+				<Button
+					title='Sign in'
+					onPress={() => signIn({ username, password })}
+				/>
 			</View>
 		</SafeAreaView>
 	);
@@ -29,6 +57,11 @@ const styles = StyleSheet.create({
 	},
 	containerTitle: {
 		flex: 4,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	containerSignIn: {
+		flex: 2,
 		alignItems: "center",
 		justifyContent: "center",
 	},
