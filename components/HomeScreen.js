@@ -31,14 +31,18 @@ export const HomeScreen = ({ navigation }) => {
 					</View>
 				</TouchableOpacity>
 				<TouchableOpacity
-					style={styles.button}
+					style={[styles.button, styles.buttonSignUp]}
 					onPress={() => navigation.navigate("SignUp")}
 				>
 					<View style={styles.buttonTextContainer}>
-						<Text style={styles.buttonText}>SignUp</Text>
+						<Text
+							style={[styles.buttonText, styles.buttonTextSignUp]}
+						>
+							SignUp
+						</Text>
 						<ArrowRightIcon
-							color={"#EEE3D9"}
-							size={24}
+							color={"#10181F"}
+							size={22}
 							style={styles.buttonIcon}
 						></ArrowRightIcon>
 					</View>
@@ -63,8 +67,8 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	title: {
-		fontSize: 56,
-		fontWeight: "800",
+		fontSize: 62,
+		fontWeight: "900",
 		marginBottom: 20,
 		color: "#10181F",
 	},
@@ -80,17 +84,30 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		width: 275,
 	},
+	buttonSignUp: {
+		backgroundColor: "#EEE3D9",
+		borderWidth: 1,
+		borderColor: "#10181F",
+		width: 225,
+	},
 	buttonText: {
 		color: "#EEE3D9",
 		padding: 5,
 		fontSize: 16,
+		marginLeft: 15,
+		fontWeight: "600",
+	},
+	buttonTextSignUp: {
+		color: "#10181F",
+		fontSize: 14,
+		fontWeight: "400",
 	},
 	buttonTextContainer: {
 		flexDirection: "row",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "space-between",
 	},
 	buttonIcon: {
-		marginLeft: "auto",
+		marginRight: 15,
 	},
 });
