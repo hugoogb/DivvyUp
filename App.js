@@ -1,9 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "./components/HomeScreen";
-import { GroupsScreen } from "./components/GroupsScreen";
+import { GetStartedScreen } from "./components/GetStartedScreen";
 import { LoginScreen } from "./components/LoginScreen";
 import { SignUpScreen } from "./components/SignUpScreen";
+import { GroupsScreen } from "./components/GroupsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,8 +22,8 @@ export default function App() {
 				}}
 			>
 				<Stack.Screen
-					name='Home'
-					component={HomeScreen}
+					name='GetStarted'
+					component={GetStartedScreen}
 					options={{
 						headerShown: false,
 					}}

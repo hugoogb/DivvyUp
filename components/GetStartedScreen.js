@@ -8,7 +8,7 @@ import {
 import SvgPeople from "../assets/undraw_people.svg";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 
-export const HomeScreen = ({ navigation }) => {
+export const GetStartedScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={[styles.container, styles.wrapper]}>
 			<View style={styles.containerTitle}>
