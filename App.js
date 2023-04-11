@@ -1,9 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Button } from "react-native";
 import { HomeScreen } from "./components/HomeScreen";
 import { ProfileScreen } from "./components/ProfileScreen";
 import { LogoTitle } from "./components/LogoTitle";
-import { Button } from "react-native";
+import { GroupScreen } from "./components/GroupScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,14 +26,7 @@ export default function App() {
 					name='Home'
 					component={HomeScreen}
 					options={{
-						headerTitle: (props) => <LogoTitle {...props} />,
-						headerRight: () => (
-							<Button
-								onPress={() => alert("This is a button!")}
-								title='Info'
-								color='#fff'
-							/>
-						),
+						headerShown: false,
 					}}
 				/>
 				<Stack.Screen
@@ -45,6 +39,7 @@ export default function App() {
 						headerRight: () => <Button title='Update count' />,
 					})}
 				/>
+				<Stack.Screen name='Group' component={GroupScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
