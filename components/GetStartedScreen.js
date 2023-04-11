@@ -52,10 +52,10 @@ export const GetStartedScreen = ({ navigation }) => {
 				</TouchableOpacity>
 				<TouchableOpacity
 					style={styles.button}
-					onPress={() => navigation.navigate("Groups")}
+					onPress={() => navigation.navigate("Home")}
 				>
 					<View style={styles.buttonTextContainer}>
-						<Text style={styles.buttonText}>See groups</Text>
+						<Text style={styles.buttonText}>Home</Text>
 						<ArrowRightIcon
 							color={"#EEE3D9"}
 							size={24}

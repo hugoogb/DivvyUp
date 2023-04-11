@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GetStartedScreen } from "./components/GetStartedScreen";
 import { LoginScreen } from "./components/LoginScreen";
 import { SignUpScreen } from "./components/SignUpScreen";
-import { GroupsScreen } from "./components/GroupsScreen";
+import { HomeScreen } from "./components/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,8 +43,8 @@ export default function App() {
 					}}
 				/>
 				<Stack.Screen
-					name='Groups'
-					component={GroupsScreen}
+					name='Home'
+					component={HomeScreen}
 					options={{
 						headerShown: false,
 					}}
