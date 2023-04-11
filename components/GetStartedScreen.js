@@ -7,14 +7,15 @@ import {
 } from "react-native";
 import SvgPeople from "../assets/undraw_people.svg";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { globalStyles } from "../styles/global.styles";
 
 export const GetStartedScreen = ({ navigation }) => {
 	return (
-		<SafeAreaView style={[styles.container, styles.wrapper]}>
-			<View style={styles.containerTitle}>
-				<Text style={styles.title}>DivvyUp</Text>
+		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
+			<View style={globalStyles.containerTitle}>
+				<Text style={globalStyles.title}>DivvyUp</Text>
 				<SvgPeople width={300} height={300}></SvgPeople>
-				<Text style={styles.textDescription}>
+				<Text style={globalStyles.textDescription}>
 					Split and share group expenses in a simple, fair and
 					transparent way. Keep track of who owes what
 				</Text>
@@ -58,32 +59,6 @@ export const GetStartedScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-	wrapper: {
-		backgroundColor: "#EEE3D9",
-	},
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	containerTitle: {
-		flex: 4,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	title: {
-		fontSize: 62,
-		fontWeight: "900",
-		marginBottom: 20,
-		color: "#10181F",
-	},
-	textDescription: {
-		fontSize: 20,
-		marginLeft: 50,
-		marginRight: 50,
-		marginTop: 20,
-		textAlign: "center",
-	},
 	containerButtons: {
 		flex: 1,
 		alignItems: "center",

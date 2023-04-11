@@ -9,6 +9,7 @@ import {
 	Button,
 } from "react-native";
 import SvgSignIn from "../assets/undraw_sign_in.svg";
+import { globalStyles } from "../styles/global.styles";
 
 export const SignInScreen = () => {
 	const [username, setUsername] = useState("");
@@ -17,11 +18,11 @@ export const SignInScreen = () => {
 	const { signIn } = useContext(AuthContext);
 
 	return (
-		<SafeAreaView style={[styles.container, styles.wrapper]}>
-			<View style={styles.containerTitle}>
-				<Text style={styles.title}>SignIn</Text>
+		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
+			<View style={globalStyles.containerTitle}>
+				<Text style={globalStyles.title}>SignIn</Text>
 				<SvgSignIn width={300} height={300}></SvgSignIn>
-				<Text style={styles.textDescription}>
+				<Text style={globalStyles.textDescription}>
 					Log into your DivvyUp account
 				</Text>
 			</View>
@@ -47,35 +48,9 @@ export const SignInScreen = () => {
 };
 
 const styles = StyleSheet.create({
-	wrapper: {
-		backgroundColor: "#EEE3D9",
-	},
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	containerTitle: {
-		flex: 4,
-		alignItems: "center",
-		justifyContent: "center",
-	},
 	containerSignIn: {
 		flex: 2,
 		alignItems: "center",
 		justifyContent: "center",
-	},
-	title: {
-		fontSize: 56,
-		fontWeight: "700",
-		marginBottom: 20,
-		color: "#10181F",
-	},
-	textDescription: {
-		fontSize: 20,
-		marginLeft: 50,
-		marginRight: 50,
-		marginTop: 20,
-		textAlign: "center",
 	},
 });
