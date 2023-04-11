@@ -52,20 +52,6 @@ export const GetStartedScreen = ({ navigation }) => {
 						></Ionicons>
 					</View>
 				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => navigation.navigate("Home")}
-				>
-					<View style={styles.buttonTextContainer}>
-						<Text style={styles.buttonText}>Home</Text>
-						<Ionicons
-							name='arrow-forward-circle'
-							size={22}
-							color={"#EEE3D9"}
-							style={styles.buttonIcon}
-						></Ionicons>
-					</View>
-				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
 	);
@@ -109,11 +95,11 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderRadius: 10,
 		width: 275,
+		borderWidth: 1,
+		borderColor: "#10181F",
 	},
 	buttonSignUp: {
 		backgroundColor: "#EEE3D9",
-		borderWidth: 1,
-		borderColor: "#10181F",
 		width: 225,
 	},
 	buttonText: {
