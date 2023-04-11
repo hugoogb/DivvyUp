@@ -1,10 +1,10 @@
 import { StyleSheet, SafeAreaView, View, Text } from "react-native";
 
-export const FeedScreen = () => {
+export const SettingsScreen = () => {
 	return (
 		<SafeAreaView style={[styles.container, styles.wrapper]}>
 			<View>
-				<Text>Feed</Text>
+				<Text>Settings</Text>
 			</View>
 		</SafeAreaView>
 	);

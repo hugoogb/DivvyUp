@@ -30,9 +30,7 @@ export const GroupsScreen = () => {
 	]);
 
 	return (
-		<SafeAreaView
-			style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-		>
+		<SafeAreaView style={[styles.container, styles.wrapper]}>
 			<Text style={styles.text}>Create group</Text>
 			<TextInput
 				style={styles.input}
@@ -70,6 +68,14 @@ export const GroupsScreen = () => {
 };
 
 const styles = StyleSheet.create({
+	wrapper: {
+		backgroundColor: "#EEE3D9",
+	},
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+	},
 	input: {
 		height: 40,
 		margin: 12,
