@@ -9,15 +9,8 @@ export const globalStyles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	containerTitle: {
-		flex: 4,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	containerFlex2: {
-		flex: 2,
-		alignItems: "center",
-		justifyContent: "center",
+	containerRow: {
+		flexDirection: "row",
 	},
 	title: {
 		fontSize: 56,
@@ -37,7 +30,7 @@ export const globalStyles = StyleSheet.create({
 		margin: 5,
 		padding: 10,
 		borderRadius: 10,
-		width: 275,
+		width: 280,
 		borderWidth: 1,
 		borderColor: "#10181F",
 	},
@@ -73,6 +66,9 @@ export const globalStyles = StyleSheet.create({
 		margin: 5,
 		padding: 10,
 		borderRadius: 10,
-		width: 275,
+		width: 280,
+	},
+	inputDouble: {
+		width: 135,
 	},
 });
