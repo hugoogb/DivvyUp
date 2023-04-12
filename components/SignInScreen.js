@@ -26,7 +26,7 @@ export const SignInScreen = () => {
 					Log into your DivvyUp account
 				</Text>
 			</View>
-			<View style={styles.containerSignIn}>
+			<View style={styles.containerSign}>
 				<TextInput
 					placeholder='Username'
 					value={username}
@@ -48,7 +48,7 @@ export const SignInScreen = () => {
 };
 
 const styles = StyleSheet.create({
-	containerSignIn: {
+	containerSign: {
 		flex: 2,
 		alignItems: "center",
 		justifyContent: "center",
