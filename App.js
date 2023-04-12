@@ -7,13 +7,13 @@ import { SignUpScreen } from "./components/SignUpScreen";
 import { HomeScreen } from "./components/HomeScreen";
 import { SplashScreen } from "./components/SplashScreen";
 import {
-	getAuth,
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signOut,
 	onAuthStateChanged,
 } from "firebase/auth";
-import { appFirebase } from "./firebaseConfig";
+import { auth, db } from "./firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 export const AuthContext = React.createContext();
 
@@ -72,8 +72,6 @@ export default function App() {
 		bootstrapAsync();
 	}, []);
 
-	const auth = getAuth(appFirebase);
-
 	const authContext = React.useMemo(
 		() => ({
 			signIn: (email, password) => {
@@ -106,10 +104,22 @@ export default function App() {
 			},
 			signUp: (email, password) => {
 				createUserWithEmailAndPassword(auth, email, password)
-					.then((userCredential) => {
-						// Signed in
-						// const user = userCredential.user;
-						// ...
+					.then(async (userCredential) => {
+						try {
+							const docRef = await addDoc(
+								collection(db, "users"),
+								{
+									uid: userCredential.user.uid,
+								}
+							);
+							console.log(
+								"Document written with ID: ",
+								docRef.id
+							);
+						} catch (e) {
+							console.error("Error adding document: ", e);
+						}
+
 						dispatch({
 							type: "SIGN_IN",
 							token: userCredential.user.uid,
