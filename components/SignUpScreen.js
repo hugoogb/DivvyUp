@@ -14,7 +14,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignUpScreen = () => {
 	const [typing, setTyping] = useState(false);
-	const [fullName, setFullName] = useState("");
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -41,9 +41,9 @@ export const SignUpScreen = () => {
 			>
 				<TextInput
 					style={globalStyles.input}
-					placeholder='Full name'
-					value={fullName}
-					onChangeText={setFullName}
+					placeholder='Name'
+					value={name}
+					onChangeText={setName}
 					onFocus={() => setTyping(true)}
 					onBlur={() => setTyping(false)}
 				/>
@@ -67,8 +67,8 @@ export const SignUpScreen = () => {
 				<TouchableOpacity
 					style={globalStyles.button}
 					onPress={() =>
-						fullName !== ""
-							? signUp(email, password, fullName)
+						name !== ""
+							? signUp(email, password, name)
 							: alert("Name can't be empty")
 					}
 				>
