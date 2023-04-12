@@ -27,4 +27,36 @@ export const globalStyles = StyleSheet.create({
 		marginTop: 20,
 		textAlign: "center",
 	},
+	button: {
+		backgroundColor: "#10181F",
+		margin: 5,
+		padding: 10,
+		borderRadius: 10,
+		width: 275,
+		borderWidth: 1,
+		borderColor: "#10181F",
+	},
+	buttonSecondary: {
+		backgroundColor: "#EEE3D9",
+	},
+	buttonText: {
+		color: "#EEE3D9",
+		padding: 5,
+		fontSize: 16,
+		marginLeft: 15,
+		fontWeight: "600",
+	},
+	buttonTextSecondary: {
+		color: "#10181F",
+		fontSize: 14,
+		fontWeight: "400",
+	},
+	buttonTextContainer: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
+	},
+	buttonIcon: {
+		marginRight: 15,
+	},
 });
