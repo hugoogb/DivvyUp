@@ -88,10 +88,9 @@ export default function App() {
 						});
 					})
 					.catch((error) => {
-						const errorCode = error.code;
+						// const errorCode = error.code;
 						const errorMessage = error.message;
-						// ...
-						console.log(`${errorCode}: ${errorMessage}`);
+						alert(errorMessage);
 					});
 
 				// In a production app, we need to send some data (usually username, password) to server and get a token
@@ -117,11 +116,9 @@ export default function App() {
 						});
 					})
 					.catch((error) => {
-						const errorCode = error.code;
+						// const errorCode = error.code;
 						const errorMessage = error.message;
-						// ...
-
-						console.log(`${errorCode}: ${errorMessage}`);
+						alert(errorMessage);
 					});
 
 				// In a production app, we need to send user data to server and get a token
