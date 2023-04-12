@@ -29,11 +29,13 @@ export const SignInScreen = () => {
 			</View>
 			<View style={styles.containerSign}>
 				<TextInput
+					style={globalStyles.input}
 					placeholder='Email'
 					value={email}
 					onChangeText={setEmail}
 				/>
 				<TextInput
+					style={globalStyles.input}
 					placeholder='Password'
 					value={password}
 					onChangeText={setPassword}

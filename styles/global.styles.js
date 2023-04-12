@@ -59,4 +59,15 @@ export const globalStyles = StyleSheet.create({
 	buttonIcon: {
 		marginRight: 15,
 	},
+	input: {
+		color: "#10181F",
+		fontSize: 16,
+		fontWeight: "400",
+		borderWidth: 1,
+		borderColor: "#10181F",
+		margin: 5,
+		padding: 10,
+		borderRadius: 10,
+		width: 275,
+	},
 });
