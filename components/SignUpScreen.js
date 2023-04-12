@@ -4,6 +4,7 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
+	KeyboardAvoidingView,
 } from "react-native";
 import SvgSignUp from "../assets/undraw_sign_up.svg";
 import { globalStyles } from "../styles/global.styles";
@@ -12,6 +13,7 @@ import { AuthContext } from "../App";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignUpScreen = () => {
+	const [typing, setTyping] = useState(false);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -21,17 +23,25 @@ export const SignUpScreen = () => {
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
 			<View style={globalStyles.containerTitle}>
 				<Text style={globalStyles.title}>Sign up</Text>
-				<SvgSignUp width={300} height={300}></SvgSignUp>
+				<SvgSignUp
+					width={typing === false ? 300 : 0}
+					height={typing === false ? 300 : 0}
+				></SvgSignUp>
 				<Text style={globalStyles.textDescription}>
 					Create a DivvyUp account if you don't have one already
 				</Text>
 			</View>
-			<View style={globalStyles.containerFlex2}>
+			<KeyboardAvoidingView
+				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				style={globalStyles.containerFlex2}
+			>
 				<TextInput
 					style={globalStyles.input}
 					placeholder='Email'
 					value={email}
 					onChangeText={setEmail}
+					onFocus={() => setTyping(true)}
+					onBlur={() => setTyping(false)}
 				/>
 				<TextInput
 					style={globalStyles.input}
@@ -39,6 +49,8 @@ export const SignUpScreen = () => {
 					value={password}
 					onChangeText={setPassword}
 					secureTextEntry
+					onFocus={() => setTyping(true)}
+					onBlur={() => setTyping(false)}
 				/>
 				<TouchableOpacity
 					style={globalStyles.button}
@@ -54,7 +66,7 @@ export const SignUpScreen = () => {
 						></Ionicons>
 					</View>
 				</TouchableOpacity>
-			</View>
+			</KeyboardAvoidingView>
 		</SafeAreaView>
 	);
 };
