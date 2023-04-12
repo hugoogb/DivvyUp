@@ -12,7 +12,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../App";
 
 export const SignUpScreen = () => {
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const { signUp } = useContext(AuthContext);
@@ -28,9 +28,9 @@ export const SignUpScreen = () => {
 			</View>
 			<View style={styles.containerSign}>
 				<TextInput
-					placeholder='Username'
-					value={username}
-					onChangeText={setUsername}
+					placeholder='Email'
+					value={email}
+					onChangeText={setEmail}
 				/>
 				<TextInput
 					placeholder='Password'
@@ -40,7 +40,7 @@ export const SignUpScreen = () => {
 				/>
 				<Button
 					title='Sign Up'
-					onPress={() => signUp({ username, password })}
+					onPress={() => signUp(email, password)}
 				/>
 			</View>
 		</SafeAreaView>

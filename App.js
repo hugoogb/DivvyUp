@@ -77,7 +77,7 @@ export default function App() {
 		() => ({
 			signIn: (email, password) => {
 				// firebase
-				signInWithEmailAndPassword(auth, email, password)
+				signInWithEmailAndPassword(email, password)
 					.then((userCredential) => {
 						// Signed in
 						// const user = userCredential.user;
@@ -91,6 +91,7 @@ export default function App() {
 						const errorCode = error.code;
 						const errorMessage = error.message;
 						// ...
+						console.log(`${errorCode}: ${errorMessage}`);
 					});
 
 				// In a production app, we need to send some data (usually username, password) to server and get a token
@@ -104,7 +105,7 @@ export default function App() {
 				signOut(auth), dispatch({ type: "SIGN_OUT" });
 			},
 			signUp: (email, password) => {
-				createUserWithEmailAndPassword(auth, email, password)
+				createUserWithEmailAndPassword(email, password)
 					.then((userCredential) => {
 						// Signed in
 						// const user = userCredential.user;
@@ -118,6 +119,8 @@ export default function App() {
 						const errorCode = error.code;
 						const errorMessage = error.message;
 						// ...
+
+						console.log(`${errorCode}: ${errorMessage}`);
 					});
 
 				// In a production app, we need to send user data to server and get a token

@@ -12,7 +12,7 @@ import SvgSignIn from "../assets/undraw_sign_in.svg";
 import { globalStyles } from "../styles/global.styles";
 
 export const SignInScreen = () => {
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const { signIn } = useContext(AuthContext);
@@ -28,9 +28,9 @@ export const SignInScreen = () => {
 			</View>
 			<View style={styles.containerSign}>
 				<TextInput
-					placeholder='Username'
-					value={username}
-					onChangeText={setUsername}
+					placeholder='Email'
+					value={email}
+					onChangeText={setEmail}
 				/>
 				<TextInput
 					placeholder='Password'
@@ -40,7 +40,7 @@ export const SignInScreen = () => {
 				/>
 				<Button
 					title='Sign in'
-					onPress={() => signIn({ username, password })}
+					onPress={() => signIn(email, password)}
 				/>
 			</View>
 		</SafeAreaView>
