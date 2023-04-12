@@ -77,8 +77,7 @@ export default function App() {
 	const authContext = React.useMemo(
 		() => ({
 			signIn: (email, password) => {
-				// firebase
-				signInWithEmailAndPassword(email, password)
+				signInWithEmailAndPassword(auth, email, password)
 					.then((userCredential) => {
 						// Signed in
 						// const user = userCredential.user;
@@ -103,10 +102,11 @@ export default function App() {
 				// dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
 			},
 			signOut: () => {
-				signOut(auth), dispatch({ type: "SIGN_OUT" });
+				signOut(auth);
+				dispatch({ type: "SIGN_OUT" });
 			},
 			signUp: (email, password) => {
-				createUserWithEmailAndPassword(email, password)
+				createUserWithEmailAndPassword(auth, email, password)
 					.then((userCredential) => {
 						// Signed in
 						// const user = userCredential.user;
