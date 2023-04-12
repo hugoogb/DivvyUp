@@ -68,7 +68,7 @@ export const SignUpScreen = () => {
 					style={globalStyles.button}
 					onPress={() =>
 						fullName !== ""
-							? signUp(email, password, firstName, lastName)
+							? signUp(email, password, fullName)
 							: alert("Name can't be empty")
 					}
 				>
