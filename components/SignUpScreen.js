@@ -14,8 +14,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignUpScreen = () => {
 	const [typing, setTyping] = useState(false);
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
+	const [fullName, setFullName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -40,24 +39,14 @@ export const SignUpScreen = () => {
 					{ flex: typing === false ? 2 : 3 },
 				]}
 			>
-				<View style={globalStyles.containerRow}>
-					<TextInput
-						style={[globalStyles.input, globalStyles.inputDouble]}
-						placeholder='First name'
-						value={firstName}
-						onChangeText={setFirstName}
-						onFocus={() => setTyping(true)}
-						onBlur={() => setTyping(false)}
-					/>
-					<TextInput
-						style={[globalStyles.input, globalStyles.inputDouble]}
-						placeholder='Last name'
-						value={lastName}
-						onChangeText={setLastName}
-						onFocus={() => setTyping(true)}
-						onBlur={() => setTyping(false)}
-					/>
-				</View>
+				<TextInput
+					style={globalStyles.input}
+					placeholder='Full name'
+					value={fullName}
+					onChangeText={setFullName}
+					onFocus={() => setTyping(true)}
+					onBlur={() => setTyping(false)}
+				/>
 				<TextInput
 					style={globalStyles.input}
 					placeholder='Email'
@@ -77,7 +66,11 @@ export const SignUpScreen = () => {
 				/>
 				<TouchableOpacity
 					style={globalStyles.button}
-					onPress={() => signUp(email, password, firstName, lastName)}
+					onPress={() =>
+						fullName !== ""
+							? signUp(email, password, firstName, lastName)
+							: alert("Name can't be empty")
+					}
 				>
 					<View style={globalStyles.buttonTextContainer}>
 						<Text style={globalStyles.buttonText}>Sign up</Text>
