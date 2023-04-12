@@ -13,7 +13,7 @@ import {
 	onAuthStateChanged,
 } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc, getDoc } from "firebase/firestore";
 
 export const AuthContext = React.createContext();
 
@@ -58,6 +58,11 @@ export default function App() {
 			try {
 				// Restore token stored in `SecureStore` or any other encrypted storage
 				// userToken = await SecureStore.getItemAsync('userToken');
+				setTimeout(() => {
+					console.log("test loading");
+
+					dispatch({ type: "RESTORE_TOKEN", token: userToken });
+				}, 1500);
 			} catch (e) {
 				// Restoring token failed
 			}
@@ -66,7 +71,7 @@ export default function App() {
 
 			// This will switch to the App screen or Auth screen and this loading
 			// screen will be unmounted and thrown away.
-			dispatch({ type: "RESTORE_TOKEN", token: userToken });
+			// dispatch({ type: "RESTORE_TOKEN", token: userToken });
 		};
 
 		bootstrapAsync();
@@ -82,7 +87,7 @@ export default function App() {
 						// ...
 						dispatch({
 							type: "SIGN_IN",
-							token: userCredential.user.uid,
+							token: userCredential.user.getIdToken(),
 						});
 					})
 					.catch((error) => {
@@ -102,27 +107,21 @@ export default function App() {
 				signOut(auth);
 				dispatch({ type: "SIGN_OUT" });
 			},
-			signUp: (email, password) => {
+			signUp: (email, password, name) => {
 				createUserWithEmailAndPassword(auth, email, password)
 					.then(async (userCredential) => {
-						try {
-							const docRef = await addDoc(
-								collection(db, "users"),
-								{
-									uid: userCredential.user.uid,
-								}
-							);
-							console.log(
-								"Document written with ID: ",
-								docRef.id
-							);
-						} catch (e) {
-							console.error("Error adding document: ", e);
-						}
+						await setDoc(
+							doc(db, "users", userCredential.user.uid),
+							{
+								uid: userCredential.user.uid,
+								email: userCredential.user.email,
+								name: name,
+							}
+						);
 
 						dispatch({
 							type: "SIGN_IN",
-							token: userCredential.user.uid,
+							token: userCredential.user.getIdToken(),
 						});
 					})
 					.catch((error) => {
@@ -143,12 +142,19 @@ export default function App() {
 	);
 
 	// TODO : set profile image, username ...
-	onAuthStateChanged(auth, (user) => {
+	onAuthStateChanged(auth, async (user) => {
 		if (user) {
-			// User is signed in, see docs for a list of available properties
-			// https://firebase.google.com/docs/reference/js/firebase.User
-			const uid = user.uid;
+			// User is signed in
 			// ...
+			const docRef = doc(db, "users", user.uid);
+			const docSnap = await getDoc(docRef);
+
+			if (docSnap.exists()) {
+				console.log("Document data:", docSnap.data());
+			} else {
+				// doc.data() will be undefined in this case
+				console.log("No such document!");
+			}
 		} else {
 			// User is signed out
 			// ...
@@ -171,7 +177,13 @@ export default function App() {
 				>
 					{state.isLoading ? (
 						// We haven't finished checking for the token yet
-						<Stack.Screen name='Splash' component={SplashScreen} />
+						<Stack.Screen
+							name='Splash'
+							component={SplashScreen}
+							options={{
+								headerShown: false,
+							}}
+						/>
 					) : state.userToken == null ? (
 						// No token found, user isn't signed in
 						<>
