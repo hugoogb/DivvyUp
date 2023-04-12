@@ -10,6 +10,7 @@ import SvgSignUp from "../assets/undraw_sign_up.svg";
 import { globalStyles } from "../styles/global.styles";
 import { useContext, useState } from "react";
 import { AuthContext } from "../App";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignUpScreen = () => {
 	const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export const SignUpScreen = () => {
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
 			<View style={globalStyles.containerTitle}>
-				<Text style={globalStyles.title}>SignUp</Text>
+				<Text style={globalStyles.title}>Sign up</Text>
 				<SvgSignUp width={300} height={300}></SvgSignUp>
 				<Text style={globalStyles.textDescription}>
 					Create a DivvyUp account if you don't have one already
@@ -38,8 +39,19 @@ export const SignUpScreen = () => {
 					onChangeText={setPassword}
 					secureTextEntry
 				/>
-				<TouchableOpacity onPress={() => signUp(email, password)}>
-					<Text>Sign Up</Text>
+				<TouchableOpacity
+					style={globalStyles.button}
+					onPress={() => signUp(email, password)}
+				>
+					<View style={globalStyles.buttonTextContainer}>
+						<Text style={globalStyles.buttonText}>Sign up</Text>
+						<Ionicons
+							name='arrow-forward-circle'
+							size={22}
+							color={"#EEE3D9"}
+							style={globalStyles.buttonIcon}
+						></Ionicons>
+					</View>
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>

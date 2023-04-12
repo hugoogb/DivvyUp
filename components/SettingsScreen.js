@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { SafeAreaView, View, Text, Button } from "react-native";
+import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
 import { AuthContext } from "../App";
 import SvgSettings from "../assets/undraw_settings.svg";
 import { globalStyles } from "../styles/global.styles";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SettingsScreen = () => {
 	const { signOut } = useContext(AuthContext);
@@ -13,9 +14,29 @@ export const SettingsScreen = () => {
 				<Text style={globalStyles.title}>Settings</Text>
 				<SvgSettings width={300} height={300}></SvgSettings>
 				<Text style={globalStyles.textDescription}>
-					Change your settings / signOut
+					Change your settings / Sign out
 				</Text>
-				<Button title='Sign out' onPress={signOut}></Button>
+				<TouchableOpacity
+					style={[globalStyles.button, globalStyles.buttonSecondary]}
+					onPress={() => signOut()}
+				>
+					<View style={globalStyles.buttonTextContainer}>
+						<Text
+							style={[
+								globalStyles.buttonText,
+								globalStyles.buttonTextSecondary,
+							]}
+						>
+							Sign out
+						</Text>
+						<Ionicons
+							name='arrow-forward-circle-outline'
+							size={22}
+							color={"#10181F"}
+							style={globalStyles.buttonIcon}
+						></Ionicons>
+					</View>
+				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
 	);

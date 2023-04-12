@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import SvgSignIn from "../assets/undraw_sign_in.svg";
 import { globalStyles } from "../styles/global.styles";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignInScreen = () => {
 	const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export const SignInScreen = () => {
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
 			<View style={globalStyles.containerTitle}>
-				<Text style={globalStyles.title}>SignIn</Text>
+				<Text style={globalStyles.title}>Sign in</Text>
 				<SvgSignIn width={300} height={300}></SvgSignIn>
 				<Text style={globalStyles.textDescription}>
 					Log into your DivvyUp account
@@ -38,8 +39,19 @@ export const SignInScreen = () => {
 					onChangeText={setPassword}
 					secureTextEntry
 				/>
-				<TouchableOpacity onPress={() => signIn(email, password)}>
-					<Text>Sign In</Text>
+				<TouchableOpacity
+					style={globalStyles.button}
+					onPress={() => signIn(email, password)}
+				>
+					<View style={globalStyles.buttonTextContainer}>
+						<Text style={globalStyles.buttonText}>Sign in</Text>
+						<Ionicons
+							name='arrow-forward-circle'
+							size={22}
+							color={"#EEE3D9"}
+							style={globalStyles.buttonIcon}
+						></Ionicons>
+					</View>
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>

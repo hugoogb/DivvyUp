@@ -26,7 +26,7 @@ export const GetStartedScreen = ({ navigation }) => {
 					onPress={() => navigation.navigate("SignIn")}
 				>
 					<View style={globalStyles.buttonTextContainer}>
-						<Text style={globalStyles.buttonText}>Sign In</Text>
+						<Text style={globalStyles.buttonText}>Sign in</Text>
 						<Ionicons
 							name='arrow-forward-circle'
 							size={22}
@@ -46,7 +46,7 @@ export const GetStartedScreen = ({ navigation }) => {
 								globalStyles.buttonTextSecondary,
 							]}
 						>
-							Sign Up
+							Sign up
 						</Text>
 						<Ionicons
 							name='arrow-forward-circle-outline'
