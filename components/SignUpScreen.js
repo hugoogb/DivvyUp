@@ -4,7 +4,7 @@ import {
 	View,
 	Text,
 	TextInput,
-	Button,
+	TouchableOpacity,
 } from "react-native";
 import SvgSignUp from "../assets/undraw_sign_up.svg";
 import { globalStyles } from "../styles/global.styles";
@@ -38,10 +38,9 @@ export const SignUpScreen = () => {
 					onChangeText={setPassword}
 					secureTextEntry
 				/>
-				<Button
-					title='Sign Up'
-					onPress={() => signUp(email, password)}
-				/>
+				<TouchableOpacity onPress={() => signUp(email, password)}>
+					<Text>Sign Up</Text>
+				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
 	);
