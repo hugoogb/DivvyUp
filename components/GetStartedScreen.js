@@ -13,7 +13,15 @@ export const GetStartedScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
 			<View style={[globalStyles.container, { flex: 4 }]}>
-				<Text style={globalStyles.title}>DivvyUp</Text>
+				<Text
+					style={[
+						globalStyles.title,
+						{ fontSize: 62 },
+						{ fontWeight: "900" },
+					]}
+				>
+					DivvyUp
+				</Text>
 				<SvgPeople width={300} height={300}></SvgPeople>
 				<Text style={globalStyles.textDescription}>
 					Split and share group expenses in a simple, fair and
