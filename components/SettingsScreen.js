@@ -16,6 +16,8 @@ export const SettingsScreen = () => {
 				<Text style={globalStyles.textDescription}>
 					Change your settings / Sign out
 				</Text>
+			</View>
+			<View style={globalStyles.container}>
 				<TouchableOpacity
 					style={[globalStyles.button, globalStyles.buttonSecondary]}
 					onPress={() => signOut()}
