@@ -1,5 +1,4 @@
 import {
-	StyleSheet,
 	SafeAreaView,
 	View,
 	Text,
@@ -27,7 +26,7 @@ export const SignUpScreen = () => {
 					Create a DivvyUp account if you don't have one already
 				</Text>
 			</View>
-			<View style={styles.containerSign}>
+			<View style={globalStyles.containerFlex2}>
 				<TextInput
 					style={globalStyles.input}
 					placeholder='Email'
@@ -59,11 +58,3 @@ export const SignUpScreen = () => {
 		</SafeAreaView>
 	);
 };
-
-const styles = StyleSheet.create({
-	containerSign: {
-		flex: 2,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-});

@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../App";
 import {
-	StyleSheet,
 	SafeAreaView,
 	View,
 	Text,
@@ -27,7 +26,7 @@ export const SignInScreen = () => {
 					Log into your DivvyUp account
 				</Text>
 			</View>
-			<View style={styles.containerSign}>
+			<View style={globalStyles.containerFlex2}>
 				<TextInput
 					style={globalStyles.input}
 					placeholder='Email'
@@ -59,11 +58,3 @@ export const SignInScreen = () => {
 		</SafeAreaView>
 	);
 };
-
-const styles = StyleSheet.create({
-	containerSign: {
-		flex: 2,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-});
