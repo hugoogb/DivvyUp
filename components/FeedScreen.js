@@ -5,7 +5,7 @@ import { globalStyles } from "../styles/global.styles";
 export const FeedScreen = () => {
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
-			<View style={globalStyles.containerTitle}>
+			<View style={[globalStyles.container, { flex: 4 }]}>
 				<Text style={globalStyles.title}>Feed</Text>
 				<SvgFeed width={300} height={300}></SvgFeed>
 				<Text style={globalStyles.textDescription}>

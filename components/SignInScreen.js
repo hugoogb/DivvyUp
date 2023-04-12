@@ -21,7 +21,7 @@ export const SignInScreen = () => {
 
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
-			<View style={globalStyles.containerTitle}>
+			<View style={[globalStyles.container, { flex: 4 }]}>
 				<Text style={globalStyles.title}>Sign in</Text>
 				<SvgSignIn
 					width={typing === false ? 300 : 0}
@@ -33,7 +33,7 @@ export const SignInScreen = () => {
 			</View>
 			<KeyboardAvoidingView
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
-				style={globalStyles.containerFlex2}
+				style={[globalStyles.container, { flex: 2 }]}
 			>
 				<TextInput
 					style={globalStyles.input}

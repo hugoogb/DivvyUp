@@ -5,7 +5,7 @@ import { globalStyles } from "../styles/global.styles";
 export const GroupsScreen = () => {
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
-			<View style={globalStyles.containerTitle}>
+			<View style={[globalStyles.container, { flex: 4 }]}>
 				<Text style={globalStyles.title}>Groups</Text>
 				<SvgGroup width={300} height={300}></SvgGroup>
 				<Text style={globalStyles.textDescription}>

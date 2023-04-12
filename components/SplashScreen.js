@@ -5,7 +5,7 @@ import { globalStyles } from "../styles/global.styles";
 export const SplashScreen = () => {
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
-			<View style={globalStyles.containerTitle}>
+			<View style={[globalStyles.container, { flex: 4 }]}>
 				<Text style={globalStyles.title}>Loading...</Text>
 				<SvgLoading width={300} height={300}></SvgLoading>
 				<Text style={globalStyles.textDescription}>Loading...</Text>

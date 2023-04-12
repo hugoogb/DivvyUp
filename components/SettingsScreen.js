@@ -10,7 +10,7 @@ export const SettingsScreen = () => {
 
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
-			<View style={globalStyles.containerTitle}>
+			<View style={[globalStyles.container, { flex: 4 }]}>
 				<Text style={globalStyles.title}>Settings</Text>
 				<SvgSettings width={300} height={300}></SvgSettings>
 				<Text style={globalStyles.textDescription}>

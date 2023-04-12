@@ -12,7 +12,7 @@ import { globalStyles } from "../styles/global.styles";
 export const GetStartedScreen = ({ navigation }) => {
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
-			<View style={globalStyles.containerTitle}>
+			<View style={[globalStyles.container, { flex: 4 }]}>
 				<Text style={globalStyles.title}>DivvyUp</Text>
 				<SvgPeople width={300} height={300}></SvgPeople>
 				<Text style={globalStyles.textDescription}>

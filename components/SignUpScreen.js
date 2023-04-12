@@ -14,6 +14,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignUpScreen = () => {
 	const [typing, setTyping] = useState(false);
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -21,7 +23,7 @@ export const SignUpScreen = () => {
 
 	return (
 		<SafeAreaView style={[globalStyles.container, globalStyles.wrapper]}>
-			<View style={globalStyles.containerTitle}>
+			<View style={[globalStyles.container, { flex: 3 }]}>
 				<Text style={globalStyles.title}>Sign up</Text>
 				<SvgSignUp
 					width={typing === false ? 300 : 0}
@@ -33,8 +35,26 @@ export const SignUpScreen = () => {
 			</View>
 			<KeyboardAvoidingView
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
-				style={globalStyles.containerFlex2}
+				style={[globalStyles.container, { flex: 2 }]}
 			>
+				<View style={globalStyles.containerRow}>
+					<TextInput
+						style={[globalStyles.input, globalStyles.inputDouble]}
+						placeholder='First name'
+						value={firstName}
+						onChangeText={setFirstName}
+						onFocus={() => setTyping(true)}
+						onBlur={() => setTyping(false)}
+					/>
+					<TextInput
+						style={[globalStyles.input, globalStyles.inputDouble]}
+						placeholder='Last name'
+						value={lastName}
+						onChangeText={setLastName}
+						onFocus={() => setTyping(true)}
+						onBlur={() => setTyping(false)}
+					/>
+				</View>
 				<TextInput
 					style={globalStyles.input}
 					placeholder='Email'
@@ -54,7 +74,7 @@ export const SignUpScreen = () => {
 				/>
 				<TouchableOpacity
 					style={globalStyles.button}
-					onPress={() => signUp(email, password)}
+					onPress={() => signUp(email, password, firstName, lastName)}
 				>
 					<View style={globalStyles.buttonTextContainer}>
 						<Text style={globalStyles.buttonText}>Sign up</Text>
