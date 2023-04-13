@@ -10,7 +10,6 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signOut,
-	onAuthStateChanged,
 } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -60,7 +59,6 @@ export default function App() {
 				// Restore token stored in `SecureStore` or any other encrypted storage
 				// userToken = await SecureStore.getItemAsync('userToken');
 				setTimeout(() => {
-					console.log("test loading");
 					dispatch({ type: "RESTORE_TOKEN", token: userToken });
 				}, 1500);
 			} catch (e) {
