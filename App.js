@@ -73,83 +73,77 @@ export default function App() {
 		};
 
 		bootstrapAsync();
-	}, []);
+	});
 
 	const [user, setUser] = React.useState({});
 
-	const authContext = React.useMemo(
-		() => ({
-			signIn: (email, password) => {
-				signInWithEmailAndPassword(auth, email, password)
-					.then(async (userCredential) => {
-						// Signed in
-						const docRef = doc(
-							db,
-							"users",
-							userCredential.user.uid
-						);
-						const docSnap = await getDoc(docRef);
-						setUser(docSnap.data());
+	const authContext = React.useMemo(() => ({
+		signIn: (email, password) => {
+			signInWithEmailAndPassword(auth, email, password)
+				.then(async (userCredential) => {
+					// Signed in
+					const docRef = doc(db, "users", userCredential.user.uid);
+					const docSnap = await getDoc(docRef);
 
-						dispatch({
-							type: "SIGN_IN",
-							token: userCredential.user.getIdToken(),
-						});
-					})
-					.catch((error) => {
-						// const errorCode = error.code;
-						const errorMessage = error.message;
-						alert(errorMessage);
+					setUser(docSnap.data());
+
+					dispatch({
+						type: "SIGN_IN",
+						token: userCredential.user.getIdToken(),
 					});
+				})
+				.catch((error) => {
+					// const errorCode = error.code;
+					const errorMessage = error.message;
+					alert(errorMessage);
+				});
 
-				// In a production app, we need to send some data (usually username, password) to server and get a token
-				// We will also need to handle errors if sign in failed
-				// After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
-				// In the example, we'll use a dummy token
+			// In a production app, we need to send some data (usually username, password) to server and get a token
+			// We will also need to handle errors if sign in failed
+			// After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
+			// In the example, we'll use a dummy token
 
-				// dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
-			},
-			signOut: () => {
-				signOut(auth);
-				dispatch({ type: "SIGN_OUT" });
-			},
-			signUp: (email, password, name) => {
-				createUserWithEmailAndPassword(auth, email, password)
-					.then(async (userCredential) => {
-						const user = {
-							uid: userCredential.user.uid,
-							email: userCredential.user.email,
-							name: name,
-						};
+			// dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+		},
+		signOut: () => {
+			signOut(auth);
+			dispatch({ type: "SIGN_OUT" });
+		},
+		signUp: (email, password, name) => {
+			createUserWithEmailAndPassword(auth, email, password)
+				.then(async (userCredential) => {
+					const user = {
+						uid: userCredential.user.uid,
+						email: userCredential.user.email,
+						name: name,
+					};
 
-						await setDoc(
-							doc(db, "users", userCredential.user.uid),
-							user
-						);
+					setUser(user);
 
-						setUser(user);
+					await setDoc(
+						doc(db, "users", userCredential.user.uid),
+						user
+					);
 
-						dispatch({
-							type: "SIGN_IN",
-							token: userCredential.user.getIdToken(),
-						});
-					})
-					.catch((error) => {
-						// const errorCode = error.code;
-						const errorMessage = error.message;
-						alert(errorMessage);
+					dispatch({
+						type: "SIGN_IN",
+						token: userCredential.user.getIdToken(),
 					});
+				})
+				.catch((error) => {
+					// const errorCode = error.code;
+					const errorMessage = error.message;
+					alert(errorMessage);
+				});
 
-				// In a production app, we need to send user data to server and get a token
-				// We will also need to handle errors if sign up failed
-				// After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
-				// In the example, we'll use a dummy token
+			// In a production app, we need to send user data to server and get a token
+			// We will also need to handle errors if sign up failed
+			// After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
+			// In the example, we'll use a dummy token
 
-				// dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
-			},
-		}),
-		[]
-	);
+			// dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+		},
+	}));
 
 	return (
 		<AuthContext.Provider value={authContext}>
