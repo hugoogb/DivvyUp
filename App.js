@@ -13,9 +13,10 @@ import {
 	onAuthStateChanged,
 } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
-import { collection, doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export const AuthContext = React.createContext();
+export const UserContext = React.createContext();
 
 const Stack = createNativeStackNavigator();
 
@@ -60,7 +61,6 @@ export default function App() {
 				// userToken = await SecureStore.getItemAsync('userToken');
 				setTimeout(() => {
 					console.log("test loading");
-
 					dispatch({ type: "RESTORE_TOKEN", token: userToken });
 				}, 1500);
 			} catch (e) {
@@ -77,14 +77,22 @@ export default function App() {
 		bootstrapAsync();
 	}, []);
 
+	const [user, setUser] = React.useState({});
+
 	const authContext = React.useMemo(
 		() => ({
 			signIn: (email, password) => {
 				signInWithEmailAndPassword(auth, email, password)
-					.then((userCredential) => {
+					.then(async (userCredential) => {
 						// Signed in
-						// const user = userCredential.user;
-						// ...
+						const docRef = doc(
+							db,
+							"users",
+							userCredential.user.uid
+						);
+						const docSnap = await getDoc(docRef);
+						setUser(docSnap.data());
+
 						dispatch({
 							type: "SIGN_IN",
 							token: userCredential.user.getIdToken(),
@@ -110,14 +118,18 @@ export default function App() {
 			signUp: (email, password, name) => {
 				createUserWithEmailAndPassword(auth, email, password)
 					.then(async (userCredential) => {
+						const user = {
+							uid: userCredential.user.uid,
+							email: userCredential.user.email,
+							name: name,
+						};
+
 						await setDoc(
 							doc(db, "users", userCredential.user.uid),
-							{
-								uid: userCredential.user.uid,
-								email: userCredential.user.email,
-								name: name,
-							}
+							user
 						);
+
+						setUser(user);
 
 						dispatch({
 							type: "SIGN_IN",
@@ -141,101 +153,83 @@ export default function App() {
 		[]
 	);
 
-	// TODO : set profile image, username ...
-	onAuthStateChanged(auth, async (user) => {
-		if (user) {
-			// User is signed in
-			// ...
-			const docRef = doc(db, "users", user.uid);
-			const docSnap = await getDoc(docRef);
-
-			if (docSnap.exists()) {
-				console.log("Document data:", docSnap.data());
-			} else {
-				// doc.data() will be undefined in this case
-				console.log("No such document!");
-			}
-		} else {
-			// User is signed out
-			// ...
-		}
-	});
-
 	return (
 		<AuthContext.Provider value={authContext}>
-			<NavigationContainer>
-				<Stack.Navigator
-					screenOptions={{
-						headerStyle: {
-							backgroundColor: "#2A6197",
-						},
-						headerTintColor: "#F2F4EE",
-						headerTitleStyle: {
-							fontWeight: "bold",
-						},
-					}}
-				>
-					{state.isLoading ? (
-						// We haven't finished checking for the token yet
-						<Stack.Screen
-							name='Splash'
-							component={SplashScreen}
-							options={{
-								headerShown: false,
-							}}
-						/>
-					) : state.userToken == null ? (
-						// No token found, user isn't signed in
-						<>
+			<UserContext.Provider value={user}>
+				<NavigationContainer>
+					<Stack.Navigator
+						screenOptions={{
+							headerStyle: {
+								backgroundColor: "#2A6197",
+							},
+							headerTintColor: "#F2F4EE",
+							headerTitleStyle: {
+								fontWeight: "bold",
+							},
+						}}
+					>
+						{state.isLoading ? (
+							// We haven't finished checking for the token yet
 							<Stack.Screen
-								name='GetStarted'
-								component={GetStartedScreen}
+								name='Splash'
+								component={SplashScreen}
 								options={{
 									headerShown: false,
-									// When logging out, a pop animation feels intuitive
-									// You can remove this if you want the default 'push' animation
-									animationTypeForReplace: state.isSignout
-										? "pop"
-										: "push",
 								}}
 							/>
+						) : state.userToken == null ? (
+							// No token found, user isn't signed in
+							<>
+								<Stack.Screen
+									name='GetStarted'
+									component={GetStartedScreen}
+									options={{
+										headerShown: false,
+										// When logging out, a pop animation feels intuitive
+										// You can remove this if you want the default 'push' animation
+										animationTypeForReplace: state.isSignout
+											? "pop"
+											: "push",
+									}}
+								/>
+								<Stack.Screen
+									name='SignIn'
+									component={SignInScreen}
+									options={{
+										headerShown: false,
+										// When logging out, a pop animation feels intuitive
+										// You can remove this if you want the default 'push' animation
+										animationTypeForReplace: state.isSignout
+											? "pop"
+											: "push",
+									}}
+								/>
+								<Stack.Screen
+									name='SignUp'
+									component={SignUpScreen}
+									options={{
+										headerShown: false,
+										// When logging out, a pop animation feels intuitive
+										// You can remove this if you want the default 'push' animation
+										animationTypeForReplace: state.isSignout
+											? "pop"
+											: "push",
+									}}
+								/>
+							</>
+						) : (
+							// User is signed in
 							<Stack.Screen
-								name='SignIn'
-								component={SignInScreen}
+								name='Home'
+								component={HomeScreen}
 								options={{
 									headerShown: false,
-									// When logging out, a pop animation feels intuitive
-									// You can remove this if you want the default 'push' animation
-									animationTypeForReplace: state.isSignout
-										? "pop"
-										: "push",
 								}}
 							/>
-							<Stack.Screen
-								name='SignUp'
-								component={SignUpScreen}
-								options={{
-									headerShown: false,
-									// When logging out, a pop animation feels intuitive
-									// You can remove this if you want the default 'push' animation
-									animationTypeForReplace: state.isSignout
-										? "pop"
-										: "push",
-								}}
-							/>
-						</>
-					) : (
-						// User is signed in
-						<Stack.Screen
-							name='Home'
-							component={HomeScreen}
-							options={{
-								headerShown: false,
-							}}
-						/>
-					)}
-				</Stack.Navigator>
-			</NavigationContainer>
+						)}
+					</Stack.Navigator>
+				</NavigationContainer>
+			</UserContext.Provider>
 		</AuthContext.Provider>
 	);
 }

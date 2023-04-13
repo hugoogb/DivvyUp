@@ -4,6 +4,7 @@ import { GroupsScreen } from "./GroupsScreen";
 import { FeedScreen } from "./FeedScreen";
 import { NotificationsScreen } from "./NotificationsScreen";
 import { SettingsScreen } from "./SettingsScreen";
+import { ProfileScreen } from "./ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,8 @@ export const HomeScreen = () => {
 						iconName = focused
 							? "notifications"
 							: "notifications-outline";
+					} else if (route.name === "Profile") {
+						iconName = focused ? "person" : "person-outline";
 					} else if (route.name === "Settings") {
 						iconName = focused ? "settings" : "settings-outline";
 					}
@@ -54,6 +57,7 @@ export const HomeScreen = () => {
 				// TODO : useContext
 				options={{ tabBarBadge: 3 }}
 			/>
+			<Tab.Screen name='Profile' component={ProfileScreen} />
 			<Tab.Screen name='Settings' component={SettingsScreen} />
 		</Tab.Navigator>
 	);
