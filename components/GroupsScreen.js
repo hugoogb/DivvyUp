@@ -5,6 +5,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 	FlatList,
+	KeyboardAvoidingView,
 } from "react-native";
 import SvgGroup from "../assets/undraw_group.svg";
 import { globalStyles } from "../styles/global.styles";
@@ -103,7 +104,10 @@ export const GroupsScreen = () => {
 							Your Groups will be showed here!
 						</Text>
 					</View>
-					<View style={[globalStyles.container, { flex: 1 }]}>
+					<KeyboardAvoidingView
+						behavior={Platform.OS === "ios" ? "padding" : "height"}
+						style={[globalStyles.container, { flex: 2 }]}
+					>
 						<TextInput
 							style={globalStyles.input}
 							placeholder='Group name'
@@ -132,7 +136,7 @@ export const GroupsScreen = () => {
 								></Ionicons>
 							</View>
 						</TouchableOpacity>
-					</View>
+					</KeyboardAvoidingView>
 				</>
 			)}
 		</SafeAreaView>
