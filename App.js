@@ -20,6 +20,8 @@ export const UserContext = React.createContext();
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+	const [userContext, setUserContext] = React.useState({});
+
 	const [state, dispatch] = React.useReducer(
 		(prevState, action) => {
 			switch (action.type) {
@@ -75,8 +77,6 @@ export default function App() {
 		bootstrapAsync();
 	});
 
-	const [user, setUser] = React.useState({});
-
 	const authContext = React.useMemo(() => ({
 		signIn: (email, password) => {
 			signInWithEmailAndPassword(auth, email, password)
@@ -85,7 +85,7 @@ export default function App() {
 					const docRef = doc(db, "users", userCredential.user.uid);
 					const docSnap = await getDoc(docRef);
 
-					setUser(docSnap.data());
+					setUserContext(docSnap.data());
 
 					dispatch({
 						type: "SIGN_IN",
@@ -118,7 +118,7 @@ export default function App() {
 						name: name,
 					};
 
-					setUser(user);
+					setUserContext(user);
 
 					await setDoc(
 						doc(db, "users", userCredential.user.uid),
@@ -147,7 +147,7 @@ export default function App() {
 
 	return (
 		<AuthContext.Provider value={authContext}>
-			<UserContext.Provider value={user}>
+			<UserContext.Provider value={userContext}>
 				<NavigationContainer>
 					<Stack.Navigator
 						screenOptions={{
