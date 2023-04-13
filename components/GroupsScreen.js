@@ -114,7 +114,11 @@ export const GroupsScreen = () => {
 						/>
 						<TouchableOpacity
 							style={globalStyles.button}
-							onPress={handleOnPressCreateGroup}
+							onPress={() => {
+								name !== ""
+									? handleOnPressCreateGroup()
+									: alert("Group name can't be empty");
+							}}
 						>
 							<View style={globalStyles.buttonTextContainer}>
 								<Text style={globalStyles.buttonText}>
