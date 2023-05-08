@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthContext = React.createContext();
 export const UserContext = React.createContext();
@@ -53,28 +54,76 @@ export default function App() {
 	);
 
 	React.useEffect(() => {
-		// Fetch the token from storage then navigate to our appropriate place
 		const bootstrapAsync = async () => {
-			let userToken;
+			let userToken = null;
 
 			try {
-				// Restore token stored in `SecureStore` or any other encrypted storage
-				// userToken = await SecureStore.getItemAsync('userToken');
-				setTimeout(() => {
-					dispatch({ type: "RESTORE_TOKEN", token: userToken });
-				}, 1500);
-			} catch (e) {
-				// Restoring token failed
+				// Restore token from AsyncStorage or any other storage mechanism
+				userToken = await AsyncStorage.getItem("userToken");
+
+				if (userToken) {
+					// Verify the token with Firebase to ensure its validity
+					const credential = auth.signInWithCredential(userToken);
+					const { user } = await credential;
+
+					if (!user) {
+						// Token is invalid, proceed with appropriate actions
+						// For example, redirect to the login/signup screen
+						userToken = null;
+					}
+				} else {
+					// Token is not available, proceed with appropriate actions
+					// For example, redirect to the login/signup screen
+					userToken = null;
+				}
+			} catch (error) {
+				// Handle errors when restoring token or validating it
+				console.log("Token validation error:", error);
 			}
 
-			// After restoring token, we may need to validate it in production apps
-
-			// This will switch to the App screen or Auth screen and this loading
-			// screen will be unmounted and thrown away.
-			// dispatch({ type: "RESTORE_TOKEN", token: userToken });
+			// Dispatch the RESTORE_TOKEN action
+			dispatch({ type: "RESTORE_TOKEN", token: userToken });
 		};
 
 		bootstrapAsync();
+	}, []);
+
+	React.useEffect(() => {
+		// Function to save the token to AsyncStorage
+		const saveTokenToStorage = async (token) => {
+			try {
+				await AsyncStorage.setItem("userToken", token);
+			} catch (error) {
+				// Handle error when saving token to AsyncStorage
+				console.log(error);
+			}
+		};
+
+		// Function to remove the token from AsyncStorage
+		const removeTokenFromStorage = async () => {
+			try {
+				await AsyncStorage.removeItem("userToken");
+			} catch (error) {
+				// Handle error when removing token from AsyncStorage
+				console.log(error);
+			}
+		};
+
+		// Subscribe to the auth state changes
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			if (user) {
+				// User is signed in, save the token to AsyncStorage
+				user.getIdToken().then(saveTokenToStorage);
+			} else {
+				// User is signed out, remove the token from AsyncStorage
+				removeTokenFromStorage();
+			}
+		});
+
+		// Clean up the subscription when the component unmounts
+		return () => {
+			unsubscribe();
+		};
 	}, []);
 
 	const authContext = React.useMemo(
@@ -102,13 +151,6 @@ export default function App() {
 						const errorMessage = error.message;
 						alert(errorMessage);
 					});
-
-				// In a production app, we need to send some data (usually username, password) to server and get a token
-				// We will also need to handle errors if sign in failed
-				// After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
-				// In the example, we'll use a dummy token
-
-				// dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
 			},
 			signOut: () => {
 				signOut(auth);
@@ -140,13 +182,6 @@ export default function App() {
 						const errorMessage = error.message;
 						alert(errorMessage);
 					});
-
-				// In a production app, we need to send user data to server and get a token
-				// We will also need to handle errors if sign up failed
-				// After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
-				// In the example, we'll use a dummy token
-
-				// dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
 			},
 		}),
 		[]
@@ -176,7 +211,7 @@ export default function App() {
 									headerShown: false,
 								}}
 							/>
-						) : state.userToken == null ? (
+						) : state.userToken === null ? (
 							// No token found, user isn't signed in
 							<>
 								<Stack.Screen
