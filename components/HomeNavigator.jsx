@@ -8,7 +8,7 @@ import { ProfileScreen } from "./ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
-export const HomeScreen = () => {
+export const HomeNavigator = () => {
 	return (
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
