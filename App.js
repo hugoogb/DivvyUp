@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { GetStartedScreen } from "./components/auth/GetStartedScreen";
 import { SignInScreen } from "./components/auth/SignInScreen";
 import { SignUpScreen } from "./components/auth/SignUpScreen";
@@ -16,7 +16,7 @@ import { useMemo, useReducer, useState } from "react";
 import { AuthContext } from "./context/auth/AuthContext";
 import { UserContext } from "./context/user/UserContext";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
 	const [userContext, setUserContext] = useState({});
