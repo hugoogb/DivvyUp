@@ -12,7 +12,6 @@ export const ProfileScreen = () => {
 			<View style={[globalStyles.container, { flex: 4 }]}>
 				<Text style={globalStyles.title}>Profile</Text>
 				<SvgProfileDetails width={300} height={300}></SvgProfileDetails>
-				<Text style={globalStyles.textDescription}>{user.uid}</Text>
 				<Text style={globalStyles.textDescription}>{user.name}</Text>
 				<Text style={globalStyles.textDescription}>{user.email}</Text>
 			</View>
