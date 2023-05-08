@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { GroupsScreen } from "./groups/GroupsScreen";
 import { FeedScreen } from "./FeedScreen";
 import { NotificationsScreen } from "./NotificationsScreen";
 import { SettingsScreen } from "./SettingsScreen";
 import { ProfileScreen } from "./ProfileScreen";
+import { GroupsNavigator } from "./groups/GroupsNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +19,7 @@ export const HomeNavigator = () => {
 
 					if (route.name === "Feed") {
 						iconName = focused ? "home" : "home-outline";
-					} else if (route.name === "Groups") {
+					} else if (route.name === "GroupsNav") {
 						iconName = focused ? "people" : "people-outline";
 					} else if (route.name === "Notifications") {
 						iconName = focused
@@ -50,7 +50,7 @@ export const HomeNavigator = () => {
 			})}
 		>
 			<Tab.Screen name='Feed' component={FeedScreen} />
-			<Tab.Screen name='Groups' component={GroupsScreen} />
+			<Tab.Screen name='GroupsNav' component={GroupsNavigator} />
 			<Tab.Screen
 				name='Notifications'
 				component={NotificationsScreen}
