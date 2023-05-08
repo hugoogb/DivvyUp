@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
-import { AuthContext } from "../App";
+import { AuthContext } from "../context/auth/AuthContext";
 import SvgSettings from "../assets/undraw_settings.svg";
 import { globalStyles } from "../styles/global.styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
