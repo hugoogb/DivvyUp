@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import SvgPeople from "../assets/undraw_people.svg";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { globalStyles } from "../styles/global.styles";
+import { globalStyles } from "../../styles/global.styles";
 
 export const GetStartedScreen = ({ navigation }) => {
 	return (

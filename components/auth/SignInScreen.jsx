@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../App";
+import { AuthContext } from "../../App";
 import {
 	SafeAreaView,
 	View,
@@ -9,7 +9,7 @@ import {
 	KeyboardAvoidingView,
 } from "react-native";
 import SvgSignIn from "../assets/undraw_sign_in.svg";
-import { globalStyles } from "../styles/global.styles";
+import { globalStyles } from "../../styles/global.styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignInScreen = () => {

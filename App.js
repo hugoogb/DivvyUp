@@ -1,9 +1,9 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { GetStartedScreen } from "./components/GetStartedScreen";
-import { SignInScreen } from "./components/SignInScreen";
-import { SignUpScreen } from "./components/SignUpScreen";
+import { GetStartedScreen } from "./components/auth/GetStartedScreen";
+import { SignInScreen } from "./components/auth/SignInScreen";
+import { SignUpScreen } from "./components/auth/SignUpScreen";
 import { HomeScreen } from "./components/HomeScreen";
 import { SplashScreen } from "./components/SplashScreen";
 import {
