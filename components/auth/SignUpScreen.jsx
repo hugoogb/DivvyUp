@@ -9,7 +9,7 @@ import {
 import SvgSignUp from "../../assets/undraw_sign_up.svg";
 import { globalStyles } from "../../styles/global.styles";
 import { useContext, useState } from "react";
-import { AuthContext } from "../../App";
+import { AuthContext } from "../../context/auth/AuthContext";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const SignUpScreen = () => {

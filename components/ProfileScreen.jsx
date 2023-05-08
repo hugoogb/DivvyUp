@@ -1,7 +1,7 @@
 import { Text, SafeAreaView, View } from "react-native";
 import SvgProfileDetails from "../assets/undraw_profile_details.svg";
 import { globalStyles } from "../styles/global.styles";
-import { UserContext } from "../App";
+import { UserContext } from "../context/user/UserContext";
 import { useContext } from "react";
 
 export const ProfileScreen = () => {

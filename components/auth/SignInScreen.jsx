@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../../App";
+import { AuthContext } from "../../context/auth/AuthContext";
 import {
 	SafeAreaView,
 	View,

@@ -20,7 +20,7 @@ import {
 	getDoc,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { UserContext } from "../App";
+import { UserContext } from "../context/user/UserContext";
 import { GroupCard } from "./GroupCard";
 
 export const GroupsScreen = () => {
