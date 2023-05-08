@@ -1,8 +1,8 @@
 import { View, Text, FlatList } from "react-native";
-import { globalStyles } from "../styles/global.styles";
+import { globalStyles } from "../../styles/global.styles";
 import { useEffect, useState } from "react";
 import { getDoc, doc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { db } from "../../firebaseConfig";
 
 export const GroupCard = ({ groupId }) => {
 	const [group, setGroup] = useState({});

@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { GroupsScreen } from "./GroupsScreen";
+import { GroupsScreen } from "./groups/GroupsScreen";
 import { FeedScreen } from "./FeedScreen";
 import { NotificationsScreen } from "./NotificationsScreen";
 import { SettingsScreen } from "./SettingsScreen";

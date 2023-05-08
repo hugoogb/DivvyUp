@@ -7,8 +7,8 @@ import {
 	FlatList,
 	KeyboardAvoidingView,
 } from "react-native";
-import SvgGroup from "../assets/undraw_group.svg";
-import { globalStyles } from "../styles/global.styles";
+import SvgGroup from "../../assets/undraw_group.svg";
+import { globalStyles } from "../../styles/global.styles";
 import { useContext, useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {
@@ -19,8 +19,8 @@ import {
 	arrayUnion,
 	getDoc,
 } from "firebase/firestore";
-import { db } from "../firebaseConfig";
-import { UserContext } from "../context/user/UserContext";
+import { db } from "../../firebaseConfig";
+import { UserContext } from "../../context/user/UserContext";
 import { GroupCard } from "./GroupCard";
 
 export const GroupsScreen = () => {
