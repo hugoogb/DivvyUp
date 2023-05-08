@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { globalStyles } from "../styles/global.styles";
 import { useEffect, useState } from "react";
 import { getDoc, doc } from "firebase/firestore";
@@ -9,12 +9,20 @@ export const GroupCard = ({ groupId }) => {
 
 	useEffect(() => {
 		const getGroupDataAsync = async () => {
-			const docSnap = await getDoc(doc(db, "groups", groupId));
+			const docGroupSnap = await getDoc(doc(db, "groups", groupId));
 
-			if (docSnap.exists()) {
-				setGroup(docSnap.data());
+			if (docGroupSnap.exists()) {
+				const groupData = docGroupSnap.data();
+				setGroup(groupData);
+
+				const memberPromises = groupData.members.map(async (member) => {
+					const docUserSnap = await getDoc(doc(db, "users", member));
+					return docUserSnap.data();
+				});
+
+				const members = await Promise.all(memberPromises);
+				setGroup({ ...groupData, members });
 			} else {
-				// docSnap.data() will be undefined in this case
 				setGroup({});
 			}
 		};
@@ -32,16 +40,25 @@ export const GroupCard = ({ groupId }) => {
 				{ marginBottom: 20 },
 			]}
 		>
-			<Text style={globalStyles.textDescription}>{group.name}</Text>
-			<Text
-				style={[
-					{ padding: 5 },
-					{ marginBottom: 5 },
-					{ marginHorizontal: 5 },
-				]}
-			>
-				{group.members}
-			</Text>
+			<View>
+				<Text
+					style={[
+						globalStyles.textDescription,
+						{ marginVertical: 10 },
+					]}
+				>
+					{group.name}
+				</Text>
+				<FlatList
+					horizontal={true}
+					data={group.members}
+					renderItem={({ item }) => <Text>{item.name}</Text>}
+					keyExtractor={(item) => item.uid}
+					ItemSeparatorComponent={() => (
+						<Text style={[{ marginRight: 5 }]}>,</Text>
+					)}
+				></FlatList>
+			</View>
 		</View>
 	);
 };
