@@ -6,7 +6,7 @@ import {
 	TouchableOpacity,
 	KeyboardAvoidingView,
 } from "react-native";
-import SvgSignUp from "../assets/undraw_sign_up.svg";
+import SvgSignUp from "../../assets/undraw_sign_up.svg";
 import { globalStyles } from "../../styles/global.styles";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../App";

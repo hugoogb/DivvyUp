@@ -8,7 +8,7 @@ import {
 	TouchableOpacity,
 	KeyboardAvoidingView,
 } from "react-native";
-import SvgSignIn from "../assets/undraw_sign_in.svg";
+import SvgSignIn from "../../assets/undraw_sign_in.svg";
 import { globalStyles } from "../../styles/global.styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
