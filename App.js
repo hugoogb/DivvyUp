@@ -1,4 +1,3 @@
-import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GetStartedScreen } from "./components/auth/GetStartedScreen";
@@ -13,25 +12,18 @@ import {
 } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-export const AuthContext = React.createContext();
-export const UserContext = React.createContext();
+import { useMemo, useReducer, useState } from "react";
+import { AuthContext } from "./context/auth/AuthContext";
+import { UserContext } from "./context/user/UserContext";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-	const [userContext, setUserContext] = React.useState({});
+	const [userContext, setUserContext] = useState({});
 
-	const [state, dispatch] = React.useReducer(
+	const [state, dispatch] = useReducer(
 		(prevState, action) => {
 			switch (action.type) {
-				case "RESTORE_TOKEN":
-					return {
-						...prevState,
-						userToken: action.token,
-						isLoading: false,
-					};
 				case "SIGN_IN":
 					return {
 						...prevState,
@@ -47,86 +39,12 @@ export default function App() {
 			}
 		},
 		{
-			isLoading: true,
 			isSignout: false,
 			userToken: null,
 		}
 	);
 
-	React.useEffect(() => {
-		const bootstrapAsync = async () => {
-			let userToken = null;
-
-			try {
-				// Restore token from AsyncStorage or any other storage mechanism
-				userToken = await AsyncStorage.getItem("userToken");
-
-				if (userToken) {
-					// Verify the token with Firebase to ensure its validity
-					const credential = auth.signInWithCredential(userToken);
-					const { user } = await credential;
-
-					if (!user) {
-						// Token is invalid, proceed with appropriate actions
-						// For example, redirect to the login/signup screen
-						userToken = null;
-					}
-				} else {
-					// Token is not available, proceed with appropriate actions
-					// For example, redirect to the login/signup screen
-					userToken = null;
-				}
-			} catch (error) {
-				// Handle errors when restoring token or validating it
-				console.log("Token validation error:", error);
-			}
-
-			// Dispatch the RESTORE_TOKEN action
-			dispatch({ type: "RESTORE_TOKEN", token: userToken });
-		};
-
-		bootstrapAsync();
-	}, []);
-
-	React.useEffect(() => {
-		// Function to save the token to AsyncStorage
-		const saveTokenToStorage = async (token) => {
-			try {
-				await AsyncStorage.setItem("userToken", token);
-			} catch (error) {
-				// Handle error when saving token to AsyncStorage
-				console.log(error);
-			}
-		};
-
-		// Function to remove the token from AsyncStorage
-		const removeTokenFromStorage = async () => {
-			try {
-				await AsyncStorage.removeItem("userToken");
-			} catch (error) {
-				// Handle error when removing token from AsyncStorage
-				console.log(error);
-			}
-		};
-
-		// Subscribe to the auth state changes
-		const unsubscribe = auth.onAuthStateChanged((user) => {
-			if (user) {
-				// User is signed in, save the token to AsyncStorage
-				user.getIdToken().then(saveTokenToStorage);
-			} else {
-				// User is signed out, remove the token from AsyncStorage
-				removeTokenFromStorage();
-			}
-		});
-
-		// Clean up the subscription when the component unmounts
-		return () => {
-			unsubscribe();
-		};
-	}, []);
-
-	const authContext = React.useMemo(
+	const authContext = useMemo(
 		() => ({
 			signIn: (email, password) => {
 				signInWithEmailAndPassword(auth, email, password)
