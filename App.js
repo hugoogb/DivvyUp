@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { GetStartedScreen } from "./components/auth/GetStartedScreen";
 import { SignInScreen } from "./components/auth/SignInScreen";
 import { SignUpScreen } from "./components/auth/SignUpScreen";
-import { HomeScreen } from "./components/HomeScreen";
+import { HomeNavigator } from "./components/HomeNavigator";
 import { SplashScreen } from "./components/SplashScreen";
 import {
 	createUserWithEmailAndPassword,
@@ -109,17 +109,7 @@ export default function App() {
 		<AuthContext.Provider value={authContext}>
 			<UserContext.Provider value={userContext}>
 				<NavigationContainer>
-					<Stack.Navigator
-						screenOptions={{
-							headerStyle: {
-								backgroundColor: "#2A6197",
-							},
-							headerTintColor: "#F2F4EE",
-							headerTitleStyle: {
-								fontWeight: "bold",
-							},
-						}}
-					>
+					<Stack.Navigator>
 						{state.isLoading ? (
 							// We haven't finished checking for the token yet
 							<Stack.Screen
@@ -173,7 +163,7 @@ export default function App() {
 							// User is signed in
 							<Stack.Screen
 								name='Home'
-								component={HomeScreen}
+								component={HomeNavigator}
 								options={{
 									headerShown: false,
 								}}
